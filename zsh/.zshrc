@@ -47,7 +47,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(virtualenvwrapper virtualenv-prompt)
+plugins=(virtualenvwrapper virtualenv-prompt cabal colored-man-pages)
 
 # User configuration
 
@@ -80,11 +80,35 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export EDITOR="emacs"
+export EDITOR="emacs -nw"
 export WORKON_HOME=~/.virtualenvs
-alias vpnon="sudo systemctl start ovpn@client.service"
-alias vpnoff="sudo systemctl stop ovpn@client.service"
+# alias vpnon="sudo systemctl start ovpn@client.service"
+# alias vpnoff="sudo systemctl stop ovpn@client.service"
+alias vagrant="TERM=xterm vagrant"  # To fix vagrant ssh warnings
+alias emacs="emacs -nw"
+alias ssh="TERM=xterm ssh"  # To fix ssh terminal
+alias magit="emacs -nw --eval \"(my-magit-layout )\""
+alias org="emacs ~/org/TODO.org"
+alias mon="switchmonitor"
+
 #source /usr/bin/virtualenvwrapper.sh
 #source ~/.oh-my-zsh/templates/zshrc.zsh-template
 export DEFAULT_USER="shane"
 export BROWSER="google-chrome-beta"
+# eval $(keychain --eval --quiet id_rsa)
+
+PATH="/home/shane/perl5/bin${PATH+:}${PATH}"; export PATH;
+PERL5LIB="/home/shane/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/shane/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/shane/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/shane/perl5"; export PERL_MM_OPT;
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export GEM_HOME=$(ruby -e 'print Gem.user_dir')
+export LESSOPEN='|pygmentize %s'
+
+export ANDROID_HOME=${HOME}/Android/Sdk
+# export ANDROID_HOME=/opt/android-sdk/
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+source ~/.zsh_profile

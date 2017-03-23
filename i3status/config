@@ -9,7 +9,7 @@
 
 general {
         colors = true
-        interval = 2
+        interval = 1
 	output_format = "i3bar"
 	color_bad = "#DC322F"
 	color_degraded = "#b58900"
@@ -77,9 +77,10 @@ disk "/home" {
 }
 
 volume master {
-       format = ": %volume"
+
+       format = "♪: %volume"
        #format_muted = "♪: muted (%volume)"
-       format_muted = ": muted (%volume)"
+       format_muted = "♪: muted (%volume)"
        device = "default"
        mixer = "Master"
        mixer_idx = 0

@@ -57,10 +57,10 @@
 
 ! urxvt
 URxvt*cursorBlink:						true
-URxvt*font:							xft:Meslo LG M DZ for Powerline:size=16:antialias=false
-URxvt*boldFont:							xft:Meslo LG M DZ for Powerline:size=16:bold:antialias=false
-URxvt*scrollBar:						false
-URxvt.perl-ext-common:						default,matcher,clipboard
+URxvt*font:							xft:Meslo LG M DZ for Powerline:size=11:antialias=true:autohint=true
+URxvt*boldFont:							xft:Meslo LG M DZ for Powerline:size=11:bold:antialias=true:autohint=true
+
+URxvt.perl-ext-common:						default,matcher
 URxvt.url-launcher: 						/usr/bin/google-chrome-stable
 URxvt.matcher.button: 						1
 URxvt.iso14755: 						false
@@ -70,4 +70,19 @@ URxvt.clipboard.copycmd:					xsel -ib
 URxvt.clipboard.pastecmd:					xsel -ob
 
 ! Font
-Xft.dpi:							96.0
+!Xft.dpi:							96
+
+! screen
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! scroll
+URxvt*scrollBar:						false
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+URxvt*saveLines: 	    10000

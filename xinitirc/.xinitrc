@@ -16,14 +16,15 @@ fi
 # exec startxfce4
 # ...or the Window Manager of your choice
 
-#xrandr --dpi 144 &
-setxkbmap -option terminate:ctrl_alt_bksp -option ctrl:nocaps
-start-pulseaudio-x11 &
+setxkbmap gb -option terminate:ctrl_alt_bksp -option ctrl:nocaps &
 xset +fp /usr/share/fonts/TTF/
-#xss-lock -- i3lock -f -r &
 xset s off
+xset s 1800 1800
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-#compton -b
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
+switchmonitor
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+xinput set-prop "DLL0665:01 06CB:76AD Touchpad" 299 0
+xinput set-prop "DLL0665:01 06CB:76AD Touchpad" 266 0
+xinput set-prop "DLL0665:01 06CB:76AD Touchpad" 287 -0.5
 exec i3

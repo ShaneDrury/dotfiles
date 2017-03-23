@@ -15,8 +15,6 @@ font pango:DejaVu Sans Mono 8
 
 set $mod Mod4
 
-assign [class="google-chrome-beta"] 1:web
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -34,7 +32,7 @@ floating_modifier $mod
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec i3-shell
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -220,7 +218,7 @@ client.unfocused        #333333 #93a1a1 #fdf6e3 #292d2e
 bar {
   status_command i3status
   strip_workspace_numbers yes
-  tray_output none
+  tray_output primary
   colors {
  	# status
 	separator $blue
@@ -258,10 +256,20 @@ bar {
 # My stuff
 focus_follows_mouse no
 
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86MonBrightnessUp exec nvidiablctl up
-bindsym XF86MonBrightnessDown exec nvidiablctl down
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-mute alsa_output.platform-broadwell-audio.HiFi__hw_broadwellrt286__sink false && pactl set-sink-volume alsa_output.platform-broadwell-audio.HiFi__hw_broadwellrt286__sink +5%
+# bindsym XF86AudioLowerVolume exec pactl set-sink-mute alsa_output.platform-broadwell-audio.HiFi__hw_broadwellrt286__sink false && pactl set-sink-volume alsa_output.platform-broadwell-audio.HiFi__hw_broadwellrt286__sink -5%
+# bindsym XF86AudioMute exec pactl set-sink-mute alsa_output.platform-broadwell-audio.HiFi__hw_broadwellrt286__sink toggle
+set $AUDIO_SINK alsa_output.platform-broadwell-audio.HiFi__hw_broadwellrt286__sink
+bindsym XF86AudioRaiseVolume exec pactl set-sink-mute $AUDIO_SINK false && pactl set-sink-volume $AUDIO_SINK +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-mute $AUDIO_SINK false && pactl set-sink-volume $AUDIO_SINK -5%
+bindsym XF86AudioMute exec pactl set-sink-mute $AUDIO_SINK toggle
+
+workspace_layout stacking
+default_orientation vertical
+
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 9
 new_window 1pixel
-exec google-chrome-beta
+exec --no-startup-id i3-msg 'workspace 1:web; exec /usr/bin/google-chrome-beta'
+# exec --no-startup-id i3-msg 'workspace 3:terms; exec /usr/bin/hipchat'
+exec --no-startup-id nm-applet
